@@ -1,0 +1,29 @@
+# ~/.zsh/autoload/v
+##############################################################################
+#
+# Wrapper for vi.  Automatically removes all non-regular files from the file
+# list.  Displays a warning for all files removed from the list.  At this
+# time, the wrapper does not handle arguments.
+#
+##############################################################################
+
+typeset -a list
+for file in "$*[@]" ; do
+	if [[ -n "$file" ]] ; then
+		if [[ -f "$file" ]]; then
+			list=("$list[@]" "$file")
+		else
+			echo "warning: skipping non-regular file <$file>."
+		fi
+	else
+		list=("$list[@]" "$file")
+	fi
+done
+
+if [[ $#list -ne 0 ]] ; then
+	vi "$list[@]"
+fi
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

@@ -1,0 +1,29 @@
+# ~/.zsh/zshrc.d/page
+##############################################################################
+#
+# If available, configure less as a pager.
+#
+##############################################################################
+
+unalias less more > /dev/null 2>&1
+if which less > /dev/null ; then
+	PAGER_EXEC=less
+	export LESS="-aiMR" # LESS is used by less to indicate default options
+	export LESSHISTFILE="-" # Don't use a search history file, it just clutters the home directory.
+	if which lesspipe > /dev/null ; then
+		eval $(lesspipe)
+	else
+		echo "warning: lesspipe unavaliable, stuck with standard less ..." 1>&2
+	fi
+else
+	echo "warning: less unavailable, using more for paging ..." 1>&2
+	PAGER_EXEC=more
+fi
+alias less="${PAGER_EXEC}"
+alias more="${PAGER_EXEC}"
+export PAGER=${PAGER_EXEC}
+unset PAGER_EXEC
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

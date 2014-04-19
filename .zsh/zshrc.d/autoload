@@ -1,0 +1,26 @@
+# ~/.zsh/zshrc.d/autoload
+##############################################################################
+#
+# If the autoload directory(ies) exists, set the FPATH and autoload everything
+# that is there.  This is last to allow the architecture, local, and host
+# zshrc files to set and expand the AUTOLOAD_DIRS variable.
+#
+##############################################################################
+
+autoload_dirs=(${HOME}/.zsh/autoload $autoload_dirs)
+foreach autodir in ${autoload_dirs} ; do
+        if [[ -x $autodir ]] ; then
+                fpath=(${fpath} ${autodir}) # FPATH is zsh function search path.
+                for file in ${autodir}/* ; do
+                        unfunction -m ${file}
+                        autoload `basename ${file}`
+                done
+        else
+                echo "warning: autoload directory <$autodir> is not present, some functions may not be available ..." 1>&2
+        fi
+done
+unset autoload_dirs
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

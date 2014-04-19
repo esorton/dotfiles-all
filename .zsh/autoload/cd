@@ -1,0 +1,26 @@
+# ~/.zsh/autoload
+##############################################################################
+#
+# Wrapper for less.  Automatically removes all non-regular files and empty
+# arguments from the file list.  Displays a warning for all files removed from
+# the list.  At this time, the wrapper does not handle arguments.
+#
+##############################################################################
+
+cd () {
+  if [[ "x$*" == "x..." ]]; then
+    cd ../..
+  elif [[ "x$*" == "x...." ]]; then
+    cd ../../..
+  elif [[ "x$*" == "x....." ]]; then
+    cd ../../../..
+  elif [[ "x$*" == "x......" ]]; then
+    cd ../../../../..
+  else
+    builtin cd "$@"
+  fi
+}
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

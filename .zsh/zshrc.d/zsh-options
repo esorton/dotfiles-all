@@ -1,0 +1,63 @@
+# ~/.zsh/zshrc.d/zsh-options
+##############################################################################
+#
+# Preferred zsh options.
+#
+##############################################################################
+
+##############################################################################
+#
+# History Setup
+#
+
+setopt HIST_EXPIRE_DUPS_FIRST			# if history is too large, expire duplicate entries first
+setopt HIST_FIND_NO_DUPS			# don't display dupicates during history search
+setopt HIST_IGNORE_DUPS				# don't put duplicates into history
+setopt HIST_IGNORE_SPACE			# don't put blank lines into history
+setopt HIST_VERIFY				# just put history entry in buffer, do not automatically execute
+setopt SHARE_HISTORY				# all zsh share and update a common history file
+
+export HISTFILE=${HOME}/.zsh/.zsh_history	# history file location
+export SAVEHIST=10000				# number of history entries to save in history file
+export HISTSIZE=10000				# maximum size of history list while running
+
+
+##############################################################################
+#
+# Filename Completion Control
+#
+setopt AUTO_LIST				# list choices on completion
+setopt AUTO_MENU				# list choices on "second" completion
+setopt LIST_TYPES				# list types on completion (ls -F)
+
+fignore=(~ .bak .class .o .swp)			# Ignore these extensions on completion
+
+
+##############################################################################
+#
+# Directory/CD Options
+#
+setopt AUTO_CD					# if a command does not exist, attempt cd
+setopt AUTO_PUSHD				# cd pushes onto the directory stack
+setopt CDABLE_VARS				# cd searches environment if directory not found
+setopt PUSHD_IGNORE_DUPS			# don't push multiple directories onto the stack
+setopt PUSHD_SILENT				# don't print the directory stack after command
+setopt PUSHD_TO_HOME				# pushd with no arguments pushes to home
+
+export DIRSTACKSIZE=10				# maximum size of the directory stack
+
+
+##############################################################################
+#
+# Other Options
+#
+setopt AUTO_CONTINUE                            # Continue suspended jobs when disowned.
+setopt CORRECT					# spelling correction
+setopt EXTENDED_GLOB				# treat the #, ~ and ^ characters as part of patterns
+setopt LONG_LIST_JOBS				# list jobs in the long format
+setopt MULTIOS					# peform multiple io operations
+setopt RM_STAR_SILENT				# don't query on rm -rf
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

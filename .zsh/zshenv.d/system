@@ -1,0 +1,37 @@
+# ~/.zsh/zshenv.d/system
+##############################################################################
+#
+# Environment setup related to the system.
+#
+##############################################################################
+
+##############################################################################
+#
+# Setup the base libpath environment.
+#
+[[ -d /usr/local/lib ]] && ld_library_path=($ld_library_path /usr/local/lib)
+
+##############################################################################
+#
+# Setup the base manpath environment.
+#
+[[ -d /usr/man ]] && manpath=($manpath /usr/man)
+[[ -d /usr/share/man ]] && manpath=($manpath /usr/share/man)
+[[ -d /usr/local/man ]] && manpath=($manpath /usr/local/man)
+[[ -d /usr/local/share/man ]] && manpath=($manpath /usr/local/share/man)
+
+##############################################################################
+#
+# Setup the base path environment.
+#
+[[ -d /usr/local/bin ]] && path=($path /usr/local/bin)
+[[ -d /usr/bin ]] && path=($path /usr/bin)
+[[ -d /bin ]] && path=($path /bin)
+[[ -d /usr/local/sbin ]] && path=($path /usr/local/bin)
+[[ -d /usr/sbin ]] && path=($path /usr/sbin)
+[[ -d /sbin ]] && path=($path /sbin)
+[[ -d /usr/games ]] && path=($path /usr/games)
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

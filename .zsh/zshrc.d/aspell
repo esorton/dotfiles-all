@@ -1,0 +1,19 @@
+# ~/.zsh/zshrc.d/aspell
+##############################################################################
+#
+# Change the aspell home directory to force all aspell dotfiles into a single
+# directory thus reducing the number of dotfiles at the toplevel of my home
+# directory.
+#
+##############################################################################
+
+unalias aspell > /dev/null 2>&1
+if which aspell > /dev/null ; then
+	alias aspell="aspell --home-dir=${HOME}/.aspell"
+else
+	echo "warning: aspell unavailable, spell checker will not be configured ..." 1>&2
+fi
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

@@ -1,0 +1,28 @@
+# ~/.zsh/zshrc.d/aliases
+##############################################################################
+#
+# Useful aliases; unrelated to other configuration items.
+#
+##############################################################################
+
+alias mv='nocorrect mv'
+alias cp='nocorrect cp'
+alias mkdir='nocorrect mkdir'
+
+alias po='popd'
+alias pu='pushd'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias cd..='cd ..'
+alias cd...='cd ../..'
+alias cd....='cd ../../..'
+alias cd.....='cd ../../../..'
+alias cd......='cd ../../../../..'
+alias cdl='cd ${HOME} ; clear'
+alias cdt='cd ${HOME}/tmp'
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

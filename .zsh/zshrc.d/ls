@@ -1,0 +1,44 @@
+# ~/.zsh/zshrc.d/ls
+##############################################################################
+#
+# Configuration of ls.
+#
+##############################################################################
+
+unalias l ls la ll lal ldl > /dev/null 2>&1
+GNU_LS_OPTIONS=""
+if [[ -f ${HOME}/.dircolors ]] ; then
+	if which dircolors > /dev/null ; then
+		eval `dircolors -b ${HOME}/.dircolors`
+		GNU_LS_OPTIONS="-h --color=auto"
+	else
+		echo "warning: unable to enable directory colors, cannot find [dircolors] ..." 1>&2
+	fi
+else
+	echo "warning: unable to enable directory colors, no .dircolors in home directory ..." 1>&2
+fi
+
+LS_OPTIONS="-F"
+if which ls > /dev/null ; then
+	ls --color > /dev/null 2>&1
+	if [[ $? -eq 0 ]] ; then
+	else
+		GNU_LS_OPTIONS=""
+		echo "warning: unable to enable directory colors, GNU version of ls not present ..." 1>&2
+	fi
+
+	alias ls="ls ${LS_OPTIONS} ${GNU_LS_OPTIONS}"
+	alias la="ls -A"
+	alias ll="ls -l"
+	alias lal="ls -Al"
+	alias ldl="ls -dl"
+else
+	echo "warning: ls is not present, using echo ..." 1>&2
+	alias ls="echo *"
+fi
+
+unset GNU_LS_OPTIONS LS_OPTIONS
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################
