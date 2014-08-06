@@ -84,6 +84,7 @@ syntax on
 
 " Use solarized colors; need to check and see of t_Co is necessary.
 set background=light
-set t_Co=16
+set t_Co=256
 colorscheme solarized
 
+let g:airline_powerline_fonts=1
