@@ -20,6 +20,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
