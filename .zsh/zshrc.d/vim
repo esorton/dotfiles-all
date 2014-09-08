@@ -1,0 +1,66 @@
+# ~/.zsh/zshrc.d/editor
+##############################################################################
+#
+# VIM Configuration.
+#
+##############################################################################
+
+if [[ ${EDITOR} == "vim" ]] ; then
+	VIM_BACKUP_DIR=${HOME}/tmp/.backups.vim
+	if [[ ! -d ${VIM_BACKUP_DIR} ]] ; then
+		mkdir -p ${VIM_BACKUP_DIR}
+		if [[ $? -ne 0 ]] ; then
+			echo "warning: failed to create vim backup directory." 1>&2
+		else
+			echo "info: created vim backup directory <${VIM_BACKUP_DIR}>."
+		fi
+	fi
+	unset VIM_BACKUP_DIR
+
+	VIM_BUNDLE_DIR=${HOME}/.vim/bundle
+	if [[ ! -d ${VIM_BUNDLE_DIR} ]] ; then
+		mkdir -p ${VIM_BUNDLE_DIR}
+		if [[ $? -ne 0 ]] ; then
+			echo "warning: failed to create vim bundle directory, vim plugins unavailable." 1>&2
+		else
+			echo "info: created vim bundle directory <${VIM_BUNDLE_DIR}>."
+		fi
+	fi
+
+        VIM_LAST_PLUGIN_UPDATE=${HOME}/.vim/last-plugin-update
+	VIM_VUNDLE_DIR=${VIM_BUNDLE_DIR}/Vundle.vim
+	if [[ ( -d ${VIM_BUNDLE_DIR} ) && ! ( -d ${VIM_VUNDLE_DIR} ) ]] ; then
+		git clone http://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+		if [[ $? -ne 0 ]] ; then
+			echo "warning: failed to clone vundle, vim plugins unavailable." 1>&2
+		else
+			echo "info: cloned vundle to directory <${VIM_VUNDLE_DIR}>."
+
+			echo -n "info: installing plugins ... "
+			vim -E +PluginInstall +qall
+			if [[ $? -ne 0 ]] ; then
+				echo "FAILED."
+			else
+				echo "done."
+			fi
+
+			touch ${VIM_LAST_PLUGIN_UPDATE}
+		fi
+	fi
+
+	ls ${VIM_LAST_PLUGIN_UPDATE}(mh-48) > /dev/null
+	if [[ $? -eq 1 ]] ; then
+		vim -E +PluginUpdate +qall
+		touch ${VIM_LAST_PLUGIN_UPDATE}
+        fi
+
+        unset VIM_LAST_PLUGIN_UPDATE
+	unset VIM_VUNDLE_DIR
+	unset VIM_BUNDLE_DIR
+fi
+
+# update plugins on first login of day.
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################

@@ -1,24 +1,13 @@
 # ~/.zsh/zshrc.d/editor
 ##############################################################################
 #
-# Configure my preferred editor, vim.
+# Set EDITOR, prefer vim.
 #
 ##############################################################################
 
 unalias vi > /dev/null 2>&1
 if which vim > /dev/null ; then
 	EDITOR_EXEC=vim
-
-	VIM_BACKUP_DIR=${HOME}/tmp/.backups.vim
-	if [[ ! -d ${VIM_BACKUP_DIR} ]] ; then
-		mkdir -p ${VIM_BACKUP_DIR}
-		if [[ $? -ne 0 ]] ; then
-			echo "warning: failed to create vim backup directory." 1>&2
-		else
-			echo "info: created vim backup directory <${VIM_BACKUP_DIR}>."
-		fi
-	fi
-	unset VIM_BACKUP_DIR
 else
 	echo "warning: vim unavailable, using standard vi ..." 1>&2
 	EDITOR_EXEC=vi
