@@ -22,7 +22,6 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-fugitive'
-Plugin 'esorton/vim-aadl'
 
 call vundle#end()
 filetype plugin indent on
