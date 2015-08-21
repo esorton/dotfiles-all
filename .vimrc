@@ -94,7 +94,7 @@ set tags+=tags;
 syntax on
 
 " Use solarized colors; need to check and see of t_Co is necessary.
-set background=light
+set background=dark
 set t_Co=256
 colorscheme solarized
 
