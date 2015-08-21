@@ -33,6 +33,13 @@ filetype plugin indent on
 " Preferred Configuration
 "
 
+" Space and 'l' do the same thing and 'l' is more natural, so remap space to
+" leader.
+let mapleader = "\<Space>"
+
+" Now that leader is convenient, use leader for common key bindings.
+let g:ctrlp_map = '<Leader><Space>'
+
 " Automatically save on certain commands.
 set autowrite
 
