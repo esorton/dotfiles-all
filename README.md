@@ -9,9 +9,7 @@ instructions in
 [hstow/README.md](https://github.com/esorton/hstow/blob/master/README.md)
 prior to these quick start instructions:
 
-     % cd ${HOME}
-     % cd .hstow
-     % git clone https://github.com/esorton/hstow.git
-     % cd ${HOME}
-     % bin/hstow
+     % cd ${HOME}/.hstow
+     % git clone https://github.com/esorton/dotfiles-all.git
+     % ../bin/hstow
 
