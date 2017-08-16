@@ -1,11 +1,21 @@
 # ~/.zsh/zshrc.d/grep
 ##############################################################################
 #
-# Set grep options.
+# Set grep alias.
 #
 ##############################################################################
 
-export GREP_OPTIONS='--color=auto'
+unalias grep > /dev/null 2>&1
+if which grep > /dev/null ; then
+	grep --version | grep "GNU grep" > /dev/null 2>&1
+	if [[ $? -eq 0 ]] ; then
+		alias grep="grep --color=auto"
+	else
+		echo "warning: GNU [grep] not present, forgoing alias ..." 2>&1
+	fi
+else
+	echo "warning: [grep] is not in path ..." 2>&1
+fi
 
 ##############################################################################
 # vim: syntax=zsh
