@@ -23,6 +23,17 @@ alias cd......='cd ../../../../..'
 alias cdl='cd ${HOME} ; clear'
 alias cdt='cd ${HOME}/tmp'
 
+alias ttw='tmux new-window'
+alias ttc='tmux choose-window'
+alias ttn='tmux next-window'
+alias ttp='tmux previous-window'
+alias tt0='tmux select-window -t 0'
+alias tt1='tmux select-window -t 1'
+alias tt2='tmux select-window -t 2'
+alias tt3='tmux select-window -t 3'
+alias tt4='tmux select-window -t 4'
+alias tt5='tmux select-window -t 5'
+
 ##############################################################################
 # vim: syntax=zsh
 ##############################################################################
