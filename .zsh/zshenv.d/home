@@ -7,6 +7,7 @@
 
 [[ -d ${HOME}/bin ]] && path=($path ${HOME}/bin)
 [[ -d ${HOME}/.local/bin ]] && path=($path ${HOME}/.local/bin)
+[[ -d ${HOME}/.cargo/bin ]] && path=($path ${HOME}/.cargo/bin)
 [[ -d ${HOME}/man ]] && manpath=($manpath ${HOME}/man)
 [[ -d ${HOME}/lib ]] && ld_library_path=($ld_library_path ${HOME}/lib)
 
