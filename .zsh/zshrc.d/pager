@@ -8,7 +8,7 @@
 unalias less more > /dev/null 2>&1
 if which less > /dev/null ; then
 	PAGER_EXEC=less
-	export LESS="-aiMR" # LESS is used by less to indicate default options
+	export LESS="-aFiMRX" # LESS is used by less to indicate default options
 	export LESSHISTFILE="-" # Don't use a search history file, it just clutters the home directory.
 	if which lesspipe > /dev/null ; then
 		eval $(lesspipe)
