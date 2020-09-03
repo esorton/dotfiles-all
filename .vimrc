@@ -23,6 +23,9 @@ Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
+if filereadable(expand('$HOME/.vim/vimrc-local-vundle'))
+  source $HOME/.vim/vimrc-local-vundle
+endif
 
 call vundle#end()
 filetype plugin indent on
@@ -97,5 +100,10 @@ syntax on
 set background=dark
 set t_Co=256
 colorscheme solarized
+
+" For configuration that is host specific.
+if filereadable(expand('$HOME/.vim/vimrc-local-config'))
+  source $HOME/.vim/vimrc-local-config
+endif
 
 let g:airline_powerline_fonts=1
