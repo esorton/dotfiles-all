@@ -33,6 +33,10 @@ alias tt2='tmux select-window -t 2'
 alias tt3='tmux select-window -t 3'
 alias tt4='tmux select-window -t 4'
 alias tt5='tmux select-window -t 5'
+alias tt6='tmux select-window -t 6'
+alias tt7='tmux select-window -t 7'
+alias tt8='tmux select-window -t 8'
+alias tt9='tmux select-window -t 9'
 
 ##############################################################################
 # vim: syntax=zsh
