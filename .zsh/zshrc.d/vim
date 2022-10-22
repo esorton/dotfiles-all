@@ -6,7 +6,7 @@
 ##############################################################################
 
 if [[ ${EDITOR} == "vim" ]] ; then
-	VIM_BACKUP_DIR=${HOME}/tmp/.backups.vim
+	VIM_BACKUP_DIR=${HOME}/t/.backups.vim
 	if [[ ! -d ${VIM_BACKUP_DIR} ]] ; then
 		mkdir -p ${VIM_BACKUP_DIR}
 		if [[ $? -ne 0 ]] ; then

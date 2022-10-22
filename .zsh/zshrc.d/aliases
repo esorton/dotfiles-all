@@ -21,7 +21,7 @@ alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
 alias cd......='cd ../../../../..'
 alias cdl='cd ${HOME} ; clear'
-alias cdt='cd ${HOME}/tmp'
+alias cdt='cd ${HOME}/t'
 
 alias ttw='tmux new-window'
 alias ttc='tmux choose-window'
