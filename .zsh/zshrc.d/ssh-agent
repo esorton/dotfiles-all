@@ -1,0 +1,61 @@
+# ~/.zsh/zshrc.d/ssh-agent
+##############################################################################
+#
+# Start/Manage ssh-agent
+#
+##############################################################################
+
+# First, check if there an agent running?  If there is already an agent, then
+# do nothing.  Assume setup is correct.  In this case either the deafult
+# environment handled ssh-agent for us (i.e. gnome shell login) or we have an
+# ssh-agent through SSH forwarding.
+ssh-add -l &> /dev/null
+
+# No "default" agent configured.  Our fallback is to communicate with an
+# ssh-agent using a socket in a known location (~/.ssh/agent/sock).  If the
+# socket exists, attempt to use it.  Otherwise, start a new agent.
+if [ $? -eq 2 ] ; then
+
+	# Create the agent directory and ensure correct permissions.
+	mkdir -p ${HOME}/.ssh
+	chmod 700 ${HOME}/.ssh
+
+	# Agent socket is placed in a known location (not based on PID).
+	SSH_AUTH_SOCK=${HOME}/.ssh/agent.socket
+	export SSH_AUTH_SOCK
+
+	SSH_AUTOLOAD_DIR=${HOME}/.ssh/autoload.d
+
+	# Socket exists, attempt to communciate with the agent.  If we can
+	# communciate, assume it is setup and take no further action.  If we
+	# cannot communicate, then setup the agent.
+	if [ -e ${SSH_AUTH_SOCK} ] ; then
+		ssh-add -l &> /dev/null
+
+		# Unable to communicate with agent.  Remove the existing socket and
+		# start a new agent.
+		if [ $? -eq 2 ] ; then
+			rm -f ${SSH_AUTH_SOCK}
+			ssh-agent -a ${SSH_AUTH_SOCK} > /dev/null
+
+			if [ -e ${SSH_AUTOLOAD_DIR} ] ; then
+				for key in ${SSH_AUTOLOAD_DIR}/* ; do
+					ssh-add $key
+				done
+			fi
+		fi
+
+	# Socket does not exist, only option is to start the agent.
+	else
+		ssh-agent -a ${SSH_AUTH_SOCK} > /dev/null
+		if [ -e ${SSH_AUTOLOAD_DIR} ] ; then
+			for key in ${SSH_AUTOLOAD_DIR}/* ; do
+				ssh-add $key
+			done
+		fi
+	fi
+fi
+
+##############################################################################
+# vim: syntax=zsh
+##############################################################################
